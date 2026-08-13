@@ -7,11 +7,36 @@ using System.Security;
 
 namespace Splendor;
 
-public struct Move(int _victoryPoints, int[] _resources, Card _card, Noble _noble, int id)
+public struct Move(int _victoryPoints, int[] _resources, Card _card, Noble _noble, int _id)
 {
     private static System.Random rand = new System.Random();
     private static readonly Dictionary<byte, int[]> rawDoubleData = new()
     {
+        {1, [0, 0, 0, 0, 1, 0]},
+        {2, [0, 0, 0, 1, 0, 0]},
+        {3, [0, 0, 0, 1, 1, 0]},
+        {4, [0, 0, 1, 0, 0, 0]},
+        {5, [0, 0, 1, 0, 1, 0]},
+        {6, [0, 0, 1, 1, 0, 0]},
+        {7, [0, 0, 1, 1, 1, 0]},
+        {8, [0, 1, 0, 0, 0, 0]},
+        {9, [0, 1, 0, 0, 1, 0]},
+        {10, [0, 1, 0, 1, 0, 0]},
+        {11, [0, 1, 0, 1, 1, 0]},
+        {12, [0, 1, 1, 0, 0, 0]},
+        {13, [0, 1, 1, 0, 1, 0]},
+        {14, [0, 1, 1, 1, 0, 0]},
+        {16, [1, 0, 0, 0, 0, 0]},
+        {17, [1, 0, 0, 0, 1, 0]},
+        {18, [1, 0, 0, 1, 0, 0]},
+        {19, [1, 0, 0, 1, 1, 0]},
+        {20, [1, 0, 1, 0, 0, 0]},
+        {21, [1, 0, 1, 0, 1, 0]},
+        {22, [1, 0, 1, 1, 0, 0]},
+        {24, [1, 1, 0, 0, 0, 0]},
+        {25, [1, 1, 0, 0, 1, 0]},
+        {26, [1, 1, 0, 1, 0, 0]},
+        {28, [1, 1, 1, 0, 0, 0]},
         {0, [2, 0, 0, 0, 0, 0]},
         {32, [0, 2, 0, 0, 0, 0]},
         {96, [0, 0, 2, 0, 0, 0]},
@@ -25,6 +50,8 @@ public struct Move(int _victoryPoints, int[] _resources, Card _card, Noble _nobl
     public readonly int[] Resources { get; } = _resources;
     public readonly Card card { get; } = _card;
     public readonly Noble noble { get; } = _noble;
+
+    public readonly int Id { get; } = _id;
     //Resource Changes are represented by POV of player
     // + signifies player gain
     // - signifies player loss (return to board)
@@ -62,7 +89,7 @@ public struct Move(int _victoryPoints, int[] _resources, Card _card, Noble _nobl
 
         for (int j = 0; j < currentPlayer.ReservedCards.Count; j++)
         {
-            Card candidateCard = currentPlayer.ReserverdCards[j];
+            Card candidateCard = currentPlayer.ReservedCards[j];
 
             int difference = 0;
             for (int i = 0; i < 5; i++)
@@ -78,29 +105,32 @@ public struct Move(int _victoryPoints, int[] _resources, Card _card, Noble _nobl
 
         int n = resourceBank.Take(5).Count(n => n > 0);
         int r = System.Math.Min(3, System.Math.Max(10 - currentPlayer.Resources.Sum(), 0));
-        int nCr = nCr(n, r);
-        totalResourceMoves += nCr;
+        int threeResourceMoves = nCr(n, r);
+        totalResourceMoves += threeResourceMoves;
 
         int randomMoveIndex = rand.Next(totalCardMoves + totalReservedCardMoves + totalReservationMoves + totalResourceMoves);
 
+        int cardIndex;
+        Card card;
+
         switch (randomMoveIndex)
         {
-            case >= 0 and < totalCardMoves:
-                int cardIndex = validCardMoves[randomMoveIndex];
-                Card card = cardIndex switch
+            case int val when val >= 0 && val < totalCardMoves:
+                cardIndex = validCardMoves[randomMoveIndex];
+                card = cardIndex switch
                 {
                     >= 0 and < 4 => levelOneCards[cardIndex % 4],
                     >= 4 and < 8 => levelTwoCards[cardIndex % 4],
                     >= 8 and < 12 => levelThreeCards[cardIndex % 4]
                 };
                 return GenerateCardMove(currentPlayer, card, cardIndex);
-            case >= totalCardMoves and < totalCardMoves + totalReservedCardMoves:
-                int cardIndex = validReservedCardMoves[randomMoveIndex - totalCardMoves];
-                Card card = currentPlayer.ReservedCards[cardIndex];
+            case int val when val >= totalCardMoves && val < totalCardMoves + totalReservedCardMoves:
+                cardIndex = validReservedCardMoves[randomMoveIndex - totalCardMoves];
+                card = currentPlayer.ReservedCards[cardIndex];
                 return GenerateCardMove(currentPlayer, card, cardIndex + 12);
-            case >= totalCardMoves + totalReservedCardMoves and < totalCardMoves + totalReservedCardMoves + totalReservationMoves:
-                int cardIndex = randomMoveIndex - totalCardMoves - totalReservedCardMoves;
-                card card = cardIndex switch
+            case int val when val >= totalCardMoves + totalReservedCardMoves && val < totalCardMoves + totalReservedCardMoves + totalReservationMoves:
+                cardIndex = randomMoveIndex - totalCardMoves - totalReservedCardMoves;
+                card = cardIndex switch
                 {
                     >= 0 and < 4 => levelOneCards[cardIndex % 4],
                     >= 4 and < 8 => levelTwoCards[cardIndex % 4],
@@ -108,8 +138,11 @@ public struct Move(int _victoryPoints, int[] _resources, Card _card, Noble _nobl
                     _ => null
                 };
                 return GenerateReservationMove(currentPlayer, card, cardIndex);
-            case >= totalCardMoves + totalReservedCardMoves + totalReservationMoves and < totalCardMoves + totalReservedCardMoves + totalReservationMoves + totalResourceMoves:
+            case int val when val >= totalCardMoves + totalReservedCardMoves + totalReservationMoves && val < totalCardMoves + totalReservedCardMoves + totalReservationMoves + totalResourceMoves:
+                return GenerateRandomResourceMove(currentPlayer, ref resourceBank, totalResourceMoves, r);
         }
+
+        return new Move(0, null, null, null, -1);
     }
 
     private static Move GenerateCardMove(Player currentPlayer, Card card, int id)
@@ -139,7 +172,7 @@ public struct Move(int _victoryPoints, int[] _resources, Card _card, Noble _nobl
         return new Move(0, resources, card, null, id);
     }
 
-    private static Move GenerateRandomResourceMove(Player currentPlayer, ref int[] resourceBank, int totalResourceMoves, int nCr, int r)
+    private static Move GenerateRandomResourceMove(Player currentPlayer, ref int[] resourceBank, int totalResourceMoves, int r)
     {
         List<byte> validResourceMoves = new List<byte>(totalResourceMoves);
         for (int i = 0; i < 5; i++)
@@ -148,46 +181,46 @@ public struct Move(int _victoryPoints, int[] _resources, Card _card, Noble _nobl
             {
                 continue;
             }
-            if (resourceBank[i] >= 4)
+            if (resourceBank[i] >= 4 && r >= 2)
             {
-                byte id = i << 5;
+                byte id = (byte)(i << 5);
                 validResourceMoves.Add(id);
             }
             if (r == 1)
             {
-                byte id = 1 << (4 - i);
+                byte id = (byte)(1 << (4 - i));
                 validResourceMoves.Add(id);
             }
             else if (r == 2 && i < 4)
             {
-                byte tempId = 1 << (4 - i);
+                byte tempId = (byte)(1 << (4 - i));
                 for (int j = i + 1; j < 5; j++)
                 {
                     if (resourceBank[i] == 0)
                     {
                         continue;
                     }
-                    byte id = tempId | (1 << (4 - j));
-                    validResourecMoves.add(id);
+                    byte id = (byte)(tempId | (1 << (4 - j)));
+                    validResourceMoves.Add(id);
                 }
             }
             else if (r == 3 && i < 3)
             {
-                byte tempIdOne = 1 << (4 - i);
+                byte tempIdOne = (byte)(1 << (4 - i));
                 for (int j = i + 1; j < 4; j++)
                 {
                     if (resourceBank[j] == 0)
                     {
                         continue;
                     }
-                    byte tempIdTwo = tempIdOne | (1 << (4 - j));
+                    byte tempIdTwo = (byte)(tempIdOne | (1 << (4 - j)));
                     for (int k = j + 1; k < 5; k++)
                     {
                         if (resourceBank[i] == 0)
                         {
                             continue;
                         }
-                        byte id = tempIdTwo | (1 << (4 - k));
+                        byte id = (byte)(tempIdTwo | (1 << (4 - k)));
                         validResourceMoves.Add(id);
                     }
                 }
@@ -195,9 +228,9 @@ public struct Move(int _victoryPoints, int[] _resources, Card _card, Noble _nobl
         }
 
         int randomMoveIndex = rand.Next(totalResourceMoves);
-        byte id = validResourceMoves[randomMoveIndex];
-        int[] resources =
-        return new Move(0, async, null, null, id);
+        byte moveId = validResourceMoves[randomMoveIndex];
+        int[] resources = DoubleDictionary[moveId];
+        return new Move(0, resources, null, null, moveId);
     }
 
     private static int nCr(int n, int r)
