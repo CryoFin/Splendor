@@ -1,0 +1,101 @@
+Level,Victory Points,Resource,Ruby,Emerald,Sapphire,Diamond,Onyx
+Level One,0,Sapphire,2,1,0,1,1
+Level One,0,Emerald,0,1,3,1,0
+Level One,0,Onyx,1,0,2,2,0
+Level One,1,Diamond,0,4,0,0,0
+Level One,0,Ruby,2,0,0,2,0
+Level One,0,Ruby,0,0,0,3,0
+Level One,0,Ruby,0,1,2,0,0
+Level One,1,Ruby,0,0,0,4,0
+Level One,0,Sapphire,0,0,0,1,2
+Level One,1,Sapphire,4,0,0,0,0
+Level One,0,Sapphire,0,0,0,0,3
+Level One,0,Diamond,1,1,1,0,1
+Level One,0,Onyx,0,3,0,0,0
+Level One,0,Diamond,2,0,0,0,1
+Level One,0,Onyx,1,2,0,0,0
+Level One,0,Onyx,0,2,0,2,0
+Level One,0,Sapphire,2,2,0,1,0
+Level One,0,Diamond,0,0,2,0,2
+Level One,0,Emerald,2,0,1,0,2
+Level One,0,Onyx,1,1,1,1,0
+Level One,0,Sapphire,1,1,0,1,1
+Level One,0,Diamond,0,2,2,0,1
+Level One,0,Emerald,2,0,2,0,0
+Level One,0,Onyx,1,1,2,1,0
+Level One,0,Emerald,0,0,1,2,0
+Level One,0,Diamond,1,2,1,0,1
+Level One,0,Emerald,1,0,1,1,2
+Level One,0,Ruby,0,1,1,2,1
+Level One,0,Sapphire,1,3,1,0,0
+Level One,0,Onyx,3,1,0,0,1
+Level One,0,Emerald,3,0,0,0,0
+Level One,1,Emerald,0,0,0,0,4
+Level One,0,Ruby,0,1,0,2,2
+Level One,0,Ruby,1,0,0,1,3
+Level One,0,Sapphire,0,2,0,0,2
+Level One,0,Emerald,1,0,1,1,1
+Level One,0,Diamond,0,0,1,3,1
+Level One,0,Ruby,0,1,1,1,1
+Level One,1,Onyx,0,0,4,0,0
+Level One,0,Diamond,0,0,3,0,0
+Level Two,3,Diamond,0,0,0,6,0
+Level Two,3,Onyx,0,0,0,0,6
+Level Two,2,Diamond,5,0,0,0,0
+Level Two,2,Ruby,0,2,4,1,0
+Level Two,3,Sapphire,0,0,6,0,0
+Level Two,1,Diamond,2,3,0,0,2
+Level Two,2,Diamond,4,1,0,0,2
+Level Two,3,Ruby,6,0,0,0,0
+Level Two,2,Sapphire,0,0,5,0,0
+Level Two,1,Ruby,2,0,3,0,3
+Level Two,2,Emerald,0,5,0,0,0
+Level Two,2,Diamond,5,0,0,0,3
+Level Two,2,Emerald,0,3,5,0,0
+Level Two,2,Sapphire,1,0,0,2,4
+Level Two,1,Emerald,0,0,3,2,2
+Level Two,2,Onyx,3,5,0,0,0
+Level Two,1,Onyx,0,3,0,3,2
+Level Two,3,Emerald,0,6,0,0,0
+Level Two,1,Sapphire,3,2,2,0,0
+Level Two,2,Sapphire,0,3,0,5,0
+Level Two,1,Emerald,3,2,0,3,0
+Level Two,2,Ruby,0,0,0,0,5
+Level Two,1,Ruby,2,0,0,2,3
+Level Two,1,Diamond,3,0,3,2,0
+Level Two,2,Onyx,2,4,1,0,0
+Level Two,1,Onyx,0,2,2,3,0
+Level Two,2,Onyx,0,0,0,5,0
+Level Two,1,Sapphire,0,3,2,0,3
+Level Two,2,Ruby,0,0,0,3,5
+Level Two,2,Emerald,0,0,2,4,1
+Level Three,4,Diamond,3,0,0,3,6
+Level Three,5,Onyx,7,0,0,0,3
+Level Three,5,Sapphire,0,0,3,7,0
+Level Three,4,Diamond,0,0,0,0,7
+Level Three,5,Diamond,0,0,0,3,7
+Level Three,3,Diamond,5,3,3,0,3
+Level Three,4,Onyx,7,0,0,0,0
+Level Three,5,Emerald,0,3,7,0,0
+Level Three,5,Ruby,3,7,0,0,0
+Level Three,3,Sapphire,3,3,0,3,5
+Level Three,3,Ruby,0,3,5,3,3
+Level Three,3,Emerald,3,0,3,5,3
+Level Three,4,Emerald,0,3,6,3,0
+Level Three,4,Ruby,0,7,0,0,0
+Level Three,4,Onyx,6,3,0,0,3
+Level Three,4,Emerald,0,0,7,0,0
+Level Three,4,Ruby,3,6,3,0,0
+Level Three,3,Onyx,3,5,3,3,0
+Level Three,4,Sapphire,0,0,3,6,3
+Level Three,4,Sapphire,0,0,0,7,0
+Noble,3,None,0,0,0,4,4
+Noble,3,None,4,4,0,0,0
+Noble,3,None,0,4,4,0,0
+Noble,3,None,3,0,0,3,3
+Noble,3,None,3,3,0,0,3
+Noble,3,None,0,0,4,4,0
+Noble,3,None,0,3,3,3,0
+Noble,3,None,0,0,3,3,3
+Noble,3,None,4,0,0,0,4
+Noble,3,None,3,3,3,0,0

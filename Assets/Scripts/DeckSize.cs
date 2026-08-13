@@ -2,8 +2,8 @@ namespace Splendor;
 
 enum DeckSize
 {
-    LevelOne = 0,
-    LevelTwo = 0,
-    LevelThree = 0,
-    Nobles = 0
+    LevelOne = 40,
+    LevelTwo = 30,
+    LevelThree = 20,
+    Nobles = 10
 }
