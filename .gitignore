@@ -1,0 +1,16 @@
+*
+
+!Splendor/
+!Splendor/Assets/
+!Splendor/Assets/Scripts/
+!Splendor/Assets/Resources/
+
+!Splendor/Assets/Scripts/Card.cs
+!Splendor/Assets/Scripts/DeckSize.cs
+!Splendor/Assets/Scripts/Game.cs
+!Splendor/Assets/Scripts/Generator.cs
+!Splendor/Assets/Scripts/Move.cs
+!Splendor/Assets/Scripts/Noble.cs
+!Splendor/Assets/Scripts/Player.cs
+!Splendor/Assets/Scripts/ResourceType.cs
+!Splendor/Assets/Resources/CardData.csv
