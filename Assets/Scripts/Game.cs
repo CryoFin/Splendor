@@ -21,7 +21,7 @@ public class Game
         NUM_PLAYERS = _numPlayers;
         players = new Player[NUM_PLAYERS];
 
-        Generator.InitCards(out Card[] levelOneCards, out Card[] levelTwoCards, out Card[] levelThreeCards);
-        Generator.InitNobles(out Noble[] nobles);
+        Generator.InitCards(out levelOneCards, out levelTwoCards, out levelThreeCards);
+        Generator.InitNobles(out nobles);
     }
 }
